@@ -1,0 +1,608 @@
+{
+  "patrol_id": "patrol_1774772381",
+  "area": "default_farm",
+  "drone_num": 3,
+  "path_viz_path": "D:\\agri_drone_project\\素材与源码\\drone_collected_data\\patrol_1774772381\\path_planning.png",
+  "disease_summary": {
+    "total_images": 42,
+    "disease_images": 35,
+    "disease_rate": 83.33
+  },
+  "disease_detail": [
+    {
+      "image_name": "drone_1_drone_1_00e909aa-e3ae-4558-9961-336bb0f35db3___JR_FrgE.S 8593.JPG",
+      "has_disease": true,
+      "disease_list": [
+        {
+          "disease_name": "Apple___Black_rot",
+          "confidence": 0.999,
+          "bbox": [
+            0.08,
+            0.0,
+            255.96,
+            255.93
+          ]
+        }
+      ]
+    },
+    {
+      "image_name": "drone_1_drone_1_0ad88d7a-c14a-4ac9-8520-c11a0ade3a8f___UF.GRC_BS_Lab Leaf 0996.JPG",
+      "has_disease": true,
+      "disease_list": [
+        {
+          "disease_name": "Tomato___Bacterial_spot",
+          "confidence": 0.9966,
+          "bbox": [
+            0.0,
+            0.0,
+            256.0,
+            255.98
+          ]
+        }
+      ]
+    },
+    {
+      "image_name": "drone_1_drone_1_0b924439-fc64-42d3-9bf3-74a593a30b2b___FAM_B.Msls 3873.JPG",
+      "has_disease": true,
+      "disease_list": [
+        {
+          "disease_name": "Grape___Esca_(Black_Measles)",
+          "confidence": 0.9956,
+          "bbox": [
+            0.0,
+            0.0,
+            256.0,
+            256.0
+          ]
+        }
+      ]
+    },
+    {
+      "image_name": "drone_1_drone_1_0bc40cc3-6a85-480e-a22f-967a866a56a1___JR_FrgE.S 2784.JPG",
+      "has_disease": true,
+      "disease_list": [
+        {
+          "disease_name": "Apple___Black_rot",
+          "confidence": 0.999,
+          "bbox": [
+            0.0,
+            0.07,
+            255.97,
+            255.97
+          ]
+        }
+      ]
+    },
+    {
+      "image_name": "drone_1_drone_1_0c7c7992-fb1c-444b-b226-69de186cea14___JR_FrgE.S 8627.JPG",
+      "has_disease": true,
+      "disease_list": [
+        {
+          "disease_name": "Apple___Black_rot",
+          "confidence": 0.9993,
+          "bbox": [
+            0.0,
+            0.0,
+            256.0,
+            256.0
+          ]
+        }
+      ]
+    },
+    {
+      "image_name": "drone_1_drone_1_0ca16873-eeac-47e9-9a87-1859950daab7___JR_FrgE.S 2835.JPG",
+      "has_disease": true,
+      "disease_list": [
+        {
+          "disease_name": "Apple___Black_rot",
+          "confidence": 0.9991,
+          "bbox": [
+            0.03,
+            0.06,
+            255.96,
+            256.0
+          ]
+        }
+      ]
+    },
+    {
+      "image_name": "drone_1_drone_1_0ccd6d5d-6896-4ce5-8b14-87a794412881___MD_Powd.M 0543.JPG",
+      "has_disease": true,
+      "disease_list": [
+        {
+          "disease_name": "Squash___Powdery_mildew",
+          "confidence": 0.9902,
+          "bbox": [
+            0.0,
+            0.0,
+            255.99,
+            255.88
+          ]
+        }
+      ]
+    },
+    {
+      "image_name": "drone_1_drone_1_0cefbd12-c195-40cd-b2d1-be0f9ee550b4___JR_FrgE.S 8762.JPG",
+      "has_disease": true,
+      "disease_list": [
+        {
+          "disease_name": "Apple___Black_rot",
+          "confidence": 0.9993,
+          "bbox": [
+            0.04,
+            0.0,
+            255.99,
+            256.0
+          ]
+        }
+      ]
+    },
+    {
+      "image_name": "drone_1_drone_1_0d17b92b-8ec2-4a00-a8ff-9daea3fed2e8___JR_FrgE.S 2915.JPG",
+      "has_disease": true,
+      "disease_list": [
+        {
+          "disease_name": "Apple___Black_rot",
+          "confidence": 0.9993,
+          "bbox": [
+            0.04,
+            0.0,
+            255.9,
+            255.98
+          ]
+        }
+      ]
+    },
+    {
+      "image_name": "drone_1_drone_1_6c468dae-d392-4435-8d2f-adcadf0425b8___PSU_CG 2276.JPG",
+      "has_disease": true,
+      "disease_list": [
+        {
+          "disease_name": "Tomato___Tomato_mosaic_virus",
+          "confidence": 0.9997,
+          "bbox": [
+            0.17,
+            0.0,
+            255.93,
+            255.88
+          ]
+        }
+      ]
+    },
+    {
+      "image_name": "drone_1_drone_1_OIP-C (1).jpg",
+      "has_disease": true,
+      "disease_list": [
+        {
+          "disease_name": "Tomato___Late_blight",
+          "confidence": 0.721,
+          "bbox": [
+            0.0,
+            0.0,
+            272.63,
+            192.0
+          ]
+        }
+      ]
+    },
+    {
+      "image_name": "drone_1_drone_1_OIP-C (2).jpg",
+      "has_disease": false,
+      "disease_list": []
+    },
+    {
+      "image_name": "drone_1_drone_1_OIP-C.jpg",
+      "has_disease": false,
+      "disease_list": []
+    },
+    {
+      "image_name": "drone_2_drone_2_0b924439-fc64-42d3-9bf3-74a593a30b2b___FAM_B.Msls 3873.JPG",
+      "has_disease": true,
+      "disease_list": [
+        {
+          "disease_name": "Grape___Esca_(Black_Measles)",
+          "confidence": 0.9956,
+          "bbox": [
+            0.0,
+            0.0,
+            256.0,
+            256.0
+          ]
+        }
+      ]
+    },
+    {
+      "image_name": "drone_2_drone_2_0bc40cc3-6a85-480e-a22f-967a866a56a1___JR_FrgE.S 2784.JPG",
+      "has_disease": true,
+      "disease_list": [
+        {
+          "disease_name": "Apple___Black_rot",
+          "confidence": 0.999,
+          "bbox": [
+            0.0,
+            0.07,
+            255.97,
+            255.97
+          ]
+        }
+      ]
+    },
+    {
+      "image_name": "drone_2_drone_2_0c7c7992-fb1c-444b-b226-69de186cea14___JR_FrgE.S 8627.JPG",
+      "has_disease": true,
+      "disease_list": [
+        {
+          "disease_name": "Apple___Black_rot",
+          "confidence": 0.9993,
+          "bbox": [
+            0.0,
+            0.0,
+            256.0,
+            256.0
+          ]
+        }
+      ]
+    },
+    {
+      "image_name": "drone_2_drone_2_0c8432e0-0484-470c-a774-7cce596b9e64___JR_FrgE.S 2841.JPG",
+      "has_disease": true,
+      "disease_list": [
+        {
+          "disease_name": "Apple___Black_rot",
+          "confidence": 0.998,
+          "bbox": [
+            0.0,
+            0.0,
+            255.95,
+            256.0
+          ]
+        }
+      ]
+    },
+    {
+      "image_name": "drone_2_drone_2_0ca16873-eeac-47e9-9a87-1859950daab7___JR_FrgE.S 2835.JPG",
+      "has_disease": true,
+      "disease_list": [
+        {
+          "disease_name": "Apple___Black_rot",
+          "confidence": 0.9991,
+          "bbox": [
+            0.03,
+            0.06,
+            255.96,
+            256.0
+          ]
+        }
+      ]
+    },
+    {
+      "image_name": "drone_2_drone_2_0cc47b2d-4a92-4bbd-af46-945165dd1960___JR_FrgE.S 8586.JPG",
+      "has_disease": true,
+      "disease_list": [
+        {
+          "disease_name": "Apple___Black_rot",
+          "confidence": 0.9996,
+          "bbox": [
+            0.0,
+            0.01,
+            255.94,
+            255.93
+          ]
+        }
+      ]
+    },
+    {
+      "image_name": "drone_2_drone_2_0ccd6d5d-6896-4ce5-8b14-87a794412881___MD_Powd.M 0543.JPG",
+      "has_disease": true,
+      "disease_list": [
+        {
+          "disease_name": "Squash___Powdery_mildew",
+          "confidence": 0.9902,
+          "bbox": [
+            0.0,
+            0.0,
+            255.99,
+            255.88
+          ]
+        }
+      ]
+    },
+    {
+      "image_name": "drone_2_drone_2_0ce8b939-3bdf-4078-8715-c0cb48afb078___JR_FrgE.S 2777.JPG",
+      "has_disease": true,
+      "disease_list": [
+        {
+          "disease_name": "Apple___Black_rot",
+          "confidence": 0.9988,
+          "bbox": [
+            0.02,
+            0.01,
+            255.96,
+            256.0
+          ]
+        }
+      ]
+    },
+    {
+      "image_name": "drone_2_drone_2_0cefbd12-c195-40cd-b2d1-be0f9ee550b4___JR_FrgE.S 8762.JPG",
+      "has_disease": true,
+      "disease_list": [
+        {
+          "disease_name": "Apple___Black_rot",
+          "confidence": 0.9993,
+          "bbox": [
+            0.04,
+            0.0,
+            255.99,
+            256.0
+          ]
+        }
+      ]
+    },
+    {
+      "image_name": "drone_2_drone_2_0d17b92b-8ec2-4a00-a8ff-9daea3fed2e8___JR_FrgE.S 2915.JPG",
+      "has_disease": true,
+      "disease_list": [
+        {
+          "disease_name": "Apple___Black_rot",
+          "confidence": 0.9993,
+          "bbox": [
+            0.04,
+            0.0,
+            255.9,
+            255.98
+          ]
+        }
+      ]
+    },
+    {
+      "image_name": "drone_2_drone_2_0ea78733-9404-4536-8793-a108c66269b3___FREC_Scab 3145.JPG",
+      "has_disease": true,
+      "disease_list": [
+        {
+          "disease_name": "Apple___Apple_scab",
+          "confidence": 0.997,
+          "bbox": [
+            0.09,
+            0.12,
+            256.0,
+            256.0
+          ]
+        }
+      ]
+    },
+    {
+      "image_name": "drone_2_drone_2_6c468dae-d392-4435-8d2f-adcadf0425b8___PSU_CG 2276.JPG",
+      "has_disease": true,
+      "disease_list": [
+        {
+          "disease_name": "Tomato___Tomato_mosaic_virus",
+          "confidence": 0.9997,
+          "bbox": [
+            0.17,
+            0.0,
+            255.93,
+            255.88
+          ]
+        }
+      ]
+    },
+    {
+      "image_name": "drone_2_drone_2_OIP-C (1).jpg",
+      "has_disease": true,
+      "disease_list": [
+        {
+          "disease_name": "Tomato___Late_blight",
+          "confidence": 0.721,
+          "bbox": [
+            0.0,
+            0.0,
+            272.63,
+            192.0
+          ]
+        }
+      ]
+    },
+    {
+      "image_name": "drone_2_drone_2_OIP-C (2).jpg",
+      "has_disease": false,
+      "disease_list": []
+    },
+    {
+      "image_name": "drone_2_drone_2_OIP-C.jpg",
+      "has_disease": false,
+      "disease_list": []
+    },
+    {
+      "image_name": "drone_3_drone_3_00e909aa-e3ae-4558-9961-336bb0f35db3___JR_FrgE.S 8593.JPG",
+      "has_disease": true,
+      "disease_list": [
+        {
+          "disease_name": "Apple___Black_rot",
+          "confidence": 0.999,
+          "bbox": [
+            0.08,
+            0.0,
+            255.96,
+            255.93
+          ]
+        }
+      ]
+    },
+    {
+      "image_name": "drone_3_drone_3_0b37761a-de32-47ee-a3a4-e138b97ef542___JR_FrgE.S 2908.JPG",
+      "has_disease": true,
+      "disease_list": [
+        {
+          "disease_name": "Apple___Black_rot",
+          "confidence": 0.9987,
+          "bbox": [
+            0.08,
+            0.0,
+            255.93,
+            255.91
+          ]
+        }
+      ]
+    },
+    {
+      "image_name": "drone_3_drone_3_0bc40cc3-6a85-480e-a22f-967a866a56a1___JR_FrgE.S 2784.JPG",
+      "has_disease": true,
+      "disease_list": [
+        {
+          "disease_name": "Apple___Black_rot",
+          "confidence": 0.999,
+          "bbox": [
+            0.0,
+            0.07,
+            255.97,
+            255.97
+          ]
+        }
+      ]
+    },
+    {
+      "image_name": "drone_3_drone_3_0c7c7992-fb1c-444b-b226-69de186cea14___JR_FrgE.S 8627.JPG",
+      "has_disease": true,
+      "disease_list": [
+        {
+          "disease_name": "Apple___Black_rot",
+          "confidence": 0.9993,
+          "bbox": [
+            0.0,
+            0.0,
+            256.0,
+            256.0
+          ]
+        }
+      ]
+    },
+    {
+      "image_name": "drone_3_drone_3_0c8432e0-0484-470c-a774-7cce596b9e64___JR_FrgE.S 2841.JPG",
+      "has_disease": true,
+      "disease_list": [
+        {
+          "disease_name": "Apple___Black_rot",
+          "confidence": 0.998,
+          "bbox": [
+            0.0,
+            0.0,
+            255.95,
+            256.0
+          ]
+        }
+      ]
+    },
+    {
+      "image_name": "drone_3_drone_3_0ce8b939-3bdf-4078-8715-c0cb48afb078___JR_FrgE.S 2777.JPG",
+      "has_disease": true,
+      "disease_list": [
+        {
+          "disease_name": "Apple___Black_rot",
+          "confidence": 0.9988,
+          "bbox": [
+            0.02,
+            0.01,
+            255.96,
+            256.0
+          ]
+        }
+      ]
+    },
+    {
+      "image_name": "drone_3_drone_3_0cefbd12-c195-40cd-b2d1-be0f9ee550b4___JR_FrgE.S 8762.JPG",
+      "has_disease": true,
+      "disease_list": [
+        {
+          "disease_name": "Apple___Black_rot",
+          "confidence": 0.9993,
+          "bbox": [
+            0.04,
+            0.0,
+            255.99,
+            256.0
+          ]
+        }
+      ]
+    },
+    {
+      "image_name": "drone_3_drone_3_0d17b92b-8ec2-4a00-a8ff-9daea3fed2e8___JR_FrgE.S 2915.JPG",
+      "has_disease": true,
+      "disease_list": [
+        {
+          "disease_name": "Apple___Black_rot",
+          "confidence": 0.9993,
+          "bbox": [
+            0.04,
+            0.0,
+            255.9,
+            255.98
+          ]
+        }
+      ]
+    },
+    {
+      "image_name": "drone_3_drone_3_0ea78733-9404-4536-8793-a108c66269b3___FREC_Scab 3145.JPG",
+      "has_disease": true,
+      "disease_list": [
+        {
+          "disease_name": "Apple___Apple_scab",
+          "confidence": 0.997,
+          "bbox": [
+            0.09,
+            0.12,
+            256.0,
+            256.0
+          ]
+        }
+      ]
+    },
+    {
+      "image_name": "drone_3_drone_3_6c468dae-d392-4435-8d2f-adcadf0425b8___PSU_CG 2276.JPG",
+      "has_disease": true,
+      "disease_list": [
+        {
+          "disease_name": "Tomato___Tomato_mosaic_virus",
+          "confidence": 0.9997,
+          "bbox": [
+            0.17,
+            0.0,
+            255.93,
+            255.88
+          ]
+        }
+      ]
+    },
+    {
+      "image_name": "drone_3_drone_3_OIP-C (1).jpg",
+      "has_disease": true,
+      "disease_list": [
+        {
+          "disease_name": "Tomato___Late_blight",
+          "confidence": 0.721,
+          "bbox": [
+            0.0,
+            0.0,
+            272.63,
+            192.0
+          ]
+        }
+      ]
+    },
+    {
+      "image_name": "drone_3_drone_3_OIP-C (2).jpg",
+      "has_disease": false,
+      "disease_list": []
+    },
+    {
+      "image_name": "drone_3_drone_3_OIP-C.jpg",
+      "has_disease": false,
+      "disease_list": []
+    },
+    {
+      "image_name": "patrol_1774772381_path_planning.png",
+      "has_disease": false,
+      "disease_list": []
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+
+# IDE
+.idea/
+.arts/
+.codeartsdoer/
+.vscode/
+*.iml
+
+# 模型文件 (过大)
+04-模型文件/best.pt
+
+# 生成的报告
+02-前端源码/前端页面/reports/
+
+# 运行时生成的数据
+06-辅助数据/drone_collected_data/
+
+# 实验日志和临时数据
+01-后端核心源码/llm_experiment_logs/
+01-后端核心源码/llm_experiment_results/temp_results_*.csv
+
+# 系统文件
+.DS_Store
+Thumbs.db
+*.log
+
+# 环境配置
+.env
+.venv/
+env/
+venv/
+
+# 图片临时文件
+01-后端核心源码/debug_vla_input.jpg
+
+# 含敏感配置的文件
+01-后端核心源码/config.py

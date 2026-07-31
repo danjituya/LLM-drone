@@ -1,0 +1,2226 @@
+{
+  "patrol_1785200999": {
+    "llm_response": "LLM不可用，使用默认参数",
+    "dispatch_params": {
+      "area": "default_farm",
+      "drone_num": 3,
+      "path": "zigzag",
+      "area_bounds": [
+        0,
+        0,
+        200,
+        150
+      ],
+      "has_obstacle": false,
+      "obstacle_position": null
+    },
+    "drone_result": {
+      "status": "success",
+      "patrol_id": "patrol_1785200999",
+      "area": "default_farm",
+      "area_bounds": [
+        0,
+        0,
+        200,
+        150
+      ],
+      "drone_num": 3,
+      "patrol_path": "zigzag",
+      "drone_status": {
+        "drone_1": {
+          "drone_id": "drone_1",
+          "sub_area": [
+            0.0,
+            0,
+            66.66666666666667,
+            150
+          ],
+          "path_length_m": 1216.67,
+          "collected_count": 32,
+          "status": "completed",
+          "image_dir": "D:\\2026011526-参赛总文件夹\\2026011526-02素材与源码\\06-辅助数据\\drone_collected_data\\patrol_1785200999\\drone_1"
+        },
+        "drone_2": {
+          "drone_id": "drone_2",
+          "sub_area": [
+            66.66666666666667,
+            0,
+            133.33333333333334,
+            150
+          ],
+          "path_length_m": 1216.67,
+          "collected_count": 32,
+          "status": "completed",
+          "image_dir": "D:\\2026011526-参赛总文件夹\\2026011526-02素材与源码\\06-辅助数据\\drone_collected_data\\patrol_1785200999\\drone_2"
+        },
+        "drone_3": {
+          "drone_id": "drone_3",
+          "sub_area": [
+            133.33333333333334,
+            0,
+            200.0,
+            150
+          ],
+          "path_length_m": 1216.67,
+          "collected_count": 32,
+          "status": "completed",
+          "image_dir": "D:\\2026011526-参赛总文件夹\\2026011526-02素材与源码\\06-辅助数据\\drone_collected_data\\patrol_1785200999\\drone_3"
+        }
+      },
+      "drone_paths": {
+        "drone_1": {
+          "sub_area": [
+            0.0,
+            0,
+            66.66666666666667,
+            150
+          ],
+          "path_points": [
+            [
+              0.0,
+              0
+            ],
+            [
+              66.66666666666667,
+              0
+            ],
+            [
+              66.66666666666667,
+              10
+            ],
+            [
+              0.0,
+              10
+            ],
+            [
+              0.0,
+              20
+            ],
+            [
+              66.66666666666667,
+              20
+            ],
+            [
+              66.66666666666667,
+              30
+            ],
+            [
+              0.0,
+              30
+            ],
+            [
+              0.0,
+              40
+            ],
+            [
+              66.66666666666667,
+              40
+            ],
+            [
+              66.66666666666667,
+              50
+            ],
+            [
+              0.0,
+              50
+            ],
+            [
+              0.0,
+              60
+            ],
+            [
+              66.66666666666667,
+              60
+            ],
+            [
+              66.66666666666667,
+              70
+            ],
+            [
+              0.0,
+              70
+            ],
+            [
+              0.0,
+              80
+            ],
+            [
+              66.66666666666667,
+              80
+            ],
+            [
+              66.66666666666667,
+              90
+            ],
+            [
+              0.0,
+              90
+            ],
+            [
+              0.0,
+              100
+            ],
+            [
+              66.66666666666667,
+              100
+            ],
+            [
+              66.66666666666667,
+              110
+            ],
+            [
+              0.0,
+              110
+            ],
+            [
+              0.0,
+              120
+            ],
+            [
+              66.66666666666667,
+              120
+            ],
+            [
+              66.66666666666667,
+              130
+            ],
+            [
+              0.0,
+              130
+            ],
+            [
+              0.0,
+              140
+            ],
+            [
+              66.66666666666667,
+              140
+            ],
+            [
+              66.66666666666667,
+              150
+            ],
+            [
+              0.0,
+              150
+            ]
+          ],
+          "path_length_m": 1216.67,
+          "has_obstacle": false,
+          "obstacle_position": null,
+          "collected_count": 32
+        },
+        "drone_2": {
+          "sub_area": [
+            66.66666666666667,
+            0,
+            133.33333333333334,
+            150
+          ],
+          "path_points": [
+            [
+              66.66666666666667,
+              0
+            ],
+            [
+              133.33333333333334,
+              0
+            ],
+            [
+              133.33333333333334,
+              10
+            ],
+            [
+              66.66666666666667,
+              10
+            ],
+            [
+              66.66666666666667,
+              20
+            ],
+            [
+              133.33333333333334,
+              20
+            ],
+            [
+              133.33333333333334,
+              30
+            ],
+            [
+              66.66666666666667,
+              30
+            ],
+            [
+              66.66666666666667,
+              40
+            ],
+            [
+              133.33333333333334,
+              40
+            ],
+            [
+              133.33333333333334,
+              50
+            ],
+            [
+              66.66666666666667,
+              50
+            ],
+            [
+              66.66666666666667,
+              60
+            ],
+            [
+              133.33333333333334,
+              60
+            ],
+            [
+              133.33333333333334,
+              70
+            ],
+            [
+              66.66666666666667,
+              70
+            ],
+            [
+              66.66666666666667,
+              80
+            ],
+            [
+              133.33333333333334,
+              80
+            ],
+            [
+              133.33333333333334,
+              90
+            ],
+            [
+              66.66666666666667,
+              90
+            ],
+            [
+              66.66666666666667,
+              100
+            ],
+            [
+              133.33333333333334,
+              100
+            ],
+            [
+              133.33333333333334,
+              110
+            ],
+            [
+              66.66666666666667,
+              110
+            ],
+            [
+              66.66666666666667,
+              120
+            ],
+            [
+              133.33333333333334,
+              120
+            ],
+            [
+              133.33333333333334,
+              130
+            ],
+            [
+              66.66666666666667,
+              130
+            ],
+            [
+              66.66666666666667,
+              140
+            ],
+            [
+              133.33333333333334,
+              140
+            ],
+            [
+              133.33333333333334,
+              150
+            ],
+            [
+              66.66666666666667,
+              150
+            ]
+          ],
+          "path_length_m": 1216.67,
+          "has_obstacle": false,
+          "obstacle_position": null,
+          "collected_count": 32
+        },
+        "drone_3": {
+          "sub_area": [
+            133.33333333333334,
+            0,
+            200.0,
+            150
+          ],
+          "path_points": [
+            [
+              133.33333333333334,
+              0
+            ],
+            [
+              200.0,
+              0
+            ],
+            [
+              200.0,
+              10
+            ],
+            [
+              133.33333333333334,
+              10
+            ],
+            [
+              133.33333333333334,
+              20
+            ],
+            [
+              200.0,
+              20
+            ],
+            [
+              200.0,
+              30
+            ],
+            [
+              133.33333333333334,
+              30
+            ],
+            [
+              133.33333333333334,
+              40
+            ],
+            [
+              200.0,
+              40
+            ],
+            [
+              200.0,
+              50
+            ],
+            [
+              133.33333333333334,
+              50
+            ],
+            [
+              133.33333333333334,
+              60
+            ],
+            [
+              200.0,
+              60
+            ],
+            [
+              200.0,
+              70
+            ],
+            [
+              133.33333333333334,
+              70
+            ],
+            [
+              133.33333333333334,
+              80
+            ],
+            [
+              200.0,
+              80
+            ],
+            [
+              200.0,
+              90
+            ],
+            [
+              133.33333333333334,
+              90
+            ],
+            [
+              133.33333333333334,
+              100
+            ],
+            [
+              200.0,
+              100
+            ],
+            [
+              200.0,
+              110
+            ],
+            [
+              133.33333333333334,
+              110
+            ],
+            [
+              133.33333333333334,
+              120
+            ],
+            [
+              200.0,
+              120
+            ],
+            [
+              200.0,
+              130
+            ],
+            [
+              133.33333333333334,
+              130
+            ],
+            [
+              133.33333333333334,
+              140
+            ],
+            [
+              200.0,
+              140
+            ],
+            [
+              200.0,
+              150
+            ],
+            [
+              133.33333333333334,
+              150
+            ]
+          ],
+          "path_length_m": 1216.67,
+          "has_obstacle": false,
+          "obstacle_position": null,
+          "collected_count": 32
+        }
+      },
+      "path_viz_path": "D:\\2026011526-参赛总文件夹\\2026011526-02素材与源码\\06-辅助数据\\drone_collected_data\\patrol_1785200999\\path_planning.png",
+      "data_path": "D:\\2026011526-参赛总文件夹\\2026011526-02素材与源码\\06-辅助数据\\drone_collected_data\\patrol_1785200999\\all_collected",
+      "has_obstacle": false,
+      "obstacle_position": null
+    },
+    "disease_result": {
+      "status": "success",
+      "total_images": 1,
+      "disease_images": 0,
+      "detail": [
+        {
+          "image_name": "patrol_1785200999_path_planning.png",
+          "has_disease": false,
+          "disease_list": []
+        }
+      ],
+      "class_names": {
+        "0": "Apple___Apple_scab",
+        "1": "Apple___Black_rot",
+        "2": "Apple___Cedar_apple_rust",
+        "3": "Apple___healthy",
+        "4": "Blueberry___healthy",
+        "5": "Cherry_(including_sour)___Powdery_mildew",
+        "6": "Cherry_(including_sour)___healthy",
+        "7": "Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot",
+        "8": "Corn_(maize)___Common_rust_",
+        "9": "Corn_(maize)___Northern_Leaf_Blight",
+        "10": "Corn_(maize)___healthy",
+        "11": "Grape___Black_rot",
+        "12": "Grape___Esca_(Black_Measles)",
+        "13": "Grape___Leaf_blight_(Isariopsis_Leaf_Spot)",
+        "14": "Grape___healthy",
+        "15": "Orange___Haunglongbing_(Citrus_greening)",
+        "16": "Peach___Bacterial_spot",
+        "17": "Peach___healthy",
+        "18": "Pepper,_bell___Bacterial_spot",
+        "19": "Pepper,_bell___healthy",
+        "20": "Potato___Early_blight",
+        "21": "Potato___Late_blight",
+        "22": "Potato___healthy",
+        "23": "Raspberry___healthy",
+        "24": "Soybean___healthy",
+        "25": "Squash___Powdery_mildew",
+        "26": "Strawberry___Leaf_scorch",
+        "27": "Strawberry___healthy",
+        "28": "Tomato___Bacterial_spot",
+        "29": "Tomato___Early_blight",
+        "30": "Tomato___Late_blight",
+        "31": "Tomato___Leaf_Mold",
+        "32": "Tomato___Septoria_leaf_spot",
+        "33": "Tomato___Spider_mites Two-spotted_spider_mite",
+        "34": "Tomato___Target_Spot",
+        "35": "Tomato___Tomato_Yellow_Leaf_Curl_Virus",
+        "36": "Tomato___Tomato_mosaic_virus",
+        "37": "Tomato___healthy"
+      }
+    },
+    "web_url": "http://localhost:54321/report/1785201002",
+    "report_file": "D:\\2026011526-参赛总文件夹\\2026011526-02素材与源码\\02-前端源码\\前端页面\\reports\\report_1785201002.json"
+  },
+  "patrol_1785207542": {
+    "llm_response": "LLM不可用，使用默认参数",
+    "dispatch_params": {
+      "area": "default_farm",
+      "drone_num": 3,
+      "path": "zigzag",
+      "area_bounds": [
+        0,
+        0,
+        200,
+        150
+      ],
+      "has_obstacle": false,
+      "obstacle_position": null
+    },
+    "drone_result": {
+      "status": "success",
+      "patrol_id": "patrol_1785207542",
+      "area": "default_farm",
+      "area_bounds": [
+        0,
+        0,
+        200,
+        150
+      ],
+      "drone_num": 3,
+      "patrol_path": "zigzag",
+      "drone_status": {
+        "drone_1": {
+          "drone_id": "drone_1",
+          "sub_area": [
+            0.0,
+            0,
+            66.66666666666667,
+            150
+          ],
+          "path_length_m": 1216.67,
+          "collected_count": 32,
+          "status": "completed",
+          "image_dir": "D:\\2026011526-参赛总文件夹\\2026011526-02素材与源码\\06-辅助数据\\drone_collected_data\\patrol_1785207542\\drone_1"
+        },
+        "drone_2": {
+          "drone_id": "drone_2",
+          "sub_area": [
+            66.66666666666667,
+            0,
+            133.33333333333334,
+            150
+          ],
+          "path_length_m": 1216.67,
+          "collected_count": 32,
+          "status": "completed",
+          "image_dir": "D:\\2026011526-参赛总文件夹\\2026011526-02素材与源码\\06-辅助数据\\drone_collected_data\\patrol_1785207542\\drone_2"
+        },
+        "drone_3": {
+          "drone_id": "drone_3",
+          "sub_area": [
+            133.33333333333334,
+            0,
+            200.0,
+            150
+          ],
+          "path_length_m": 1216.67,
+          "collected_count": 32,
+          "status": "completed",
+          "image_dir": "D:\\2026011526-参赛总文件夹\\2026011526-02素材与源码\\06-辅助数据\\drone_collected_data\\patrol_1785207542\\drone_3"
+        }
+      },
+      "drone_paths": {
+        "drone_1": {
+          "sub_area": [
+            0.0,
+            0,
+            66.66666666666667,
+            150
+          ],
+          "path_points": [
+            [
+              0.0,
+              0
+            ],
+            [
+              66.66666666666667,
+              0
+            ],
+            [
+              66.66666666666667,
+              10
+            ],
+            [
+              0.0,
+              10
+            ],
+            [
+              0.0,
+              20
+            ],
+            [
+              66.66666666666667,
+              20
+            ],
+            [
+              66.66666666666667,
+              30
+            ],
+            [
+              0.0,
+              30
+            ],
+            [
+              0.0,
+              40
+            ],
+            [
+              66.66666666666667,
+              40
+            ],
+            [
+              66.66666666666667,
+              50
+            ],
+            [
+              0.0,
+              50
+            ],
+            [
+              0.0,
+              60
+            ],
+            [
+              66.66666666666667,
+              60
+            ],
+            [
+              66.66666666666667,
+              70
+            ],
+            [
+              0.0,
+              70
+            ],
+            [
+              0.0,
+              80
+            ],
+            [
+              66.66666666666667,
+              80
+            ],
+            [
+              66.66666666666667,
+              90
+            ],
+            [
+              0.0,
+              90
+            ],
+            [
+              0.0,
+              100
+            ],
+            [
+              66.66666666666667,
+              100
+            ],
+            [
+              66.66666666666667,
+              110
+            ],
+            [
+              0.0,
+              110
+            ],
+            [
+              0.0,
+              120
+            ],
+            [
+              66.66666666666667,
+              120
+            ],
+            [
+              66.66666666666667,
+              130
+            ],
+            [
+              0.0,
+              130
+            ],
+            [
+              0.0,
+              140
+            ],
+            [
+              66.66666666666667,
+              140
+            ],
+            [
+              66.66666666666667,
+              150
+            ],
+            [
+              0.0,
+              150
+            ]
+          ],
+          "path_length_m": 1216.67,
+          "has_obstacle": false,
+          "obstacle_position": null,
+          "collected_count": 32
+        },
+        "drone_2": {
+          "sub_area": [
+            66.66666666666667,
+            0,
+            133.33333333333334,
+            150
+          ],
+          "path_points": [
+            [
+              66.66666666666667,
+              0
+            ],
+            [
+              133.33333333333334,
+              0
+            ],
+            [
+              133.33333333333334,
+              10
+            ],
+            [
+              66.66666666666667,
+              10
+            ],
+            [
+              66.66666666666667,
+              20
+            ],
+            [
+              133.33333333333334,
+              20
+            ],
+            [
+              133.33333333333334,
+              30
+            ],
+            [
+              66.66666666666667,
+              30
+            ],
+            [
+              66.66666666666667,
+              40
+            ],
+            [
+              133.33333333333334,
+              40
+            ],
+            [
+              133.33333333333334,
+              50
+            ],
+            [
+              66.66666666666667,
+              50
+            ],
+            [
+              66.66666666666667,
+              60
+            ],
+            [
+              133.33333333333334,
+              60
+            ],
+            [
+              133.33333333333334,
+              70
+            ],
+            [
+              66.66666666666667,
+              70
+            ],
+            [
+              66.66666666666667,
+              80
+            ],
+            [
+              133.33333333333334,
+              80
+            ],
+            [
+              133.33333333333334,
+              90
+            ],
+            [
+              66.66666666666667,
+              90
+            ],
+            [
+              66.66666666666667,
+              100
+            ],
+            [
+              133.33333333333334,
+              100
+            ],
+            [
+              133.33333333333334,
+              110
+            ],
+            [
+              66.66666666666667,
+              110
+            ],
+            [
+              66.66666666666667,
+              120
+            ],
+            [
+              133.33333333333334,
+              120
+            ],
+            [
+              133.33333333333334,
+              130
+            ],
+            [
+              66.66666666666667,
+              130
+            ],
+            [
+              66.66666666666667,
+              140
+            ],
+            [
+              133.33333333333334,
+              140
+            ],
+            [
+              133.33333333333334,
+              150
+            ],
+            [
+              66.66666666666667,
+              150
+            ]
+          ],
+          "path_length_m": 1216.67,
+          "has_obstacle": false,
+          "obstacle_position": null,
+          "collected_count": 32
+        },
+        "drone_3": {
+          "sub_area": [
+            133.33333333333334,
+            0,
+            200.0,
+            150
+          ],
+          "path_points": [
+            [
+              133.33333333333334,
+              0
+            ],
+            [
+              200.0,
+              0
+            ],
+            [
+              200.0,
+              10
+            ],
+            [
+              133.33333333333334,
+              10
+            ],
+            [
+              133.33333333333334,
+              20
+            ],
+            [
+              200.0,
+              20
+            ],
+            [
+              200.0,
+              30
+            ],
+            [
+              133.33333333333334,
+              30
+            ],
+            [
+              133.33333333333334,
+              40
+            ],
+            [
+              200.0,
+              40
+            ],
+            [
+              200.0,
+              50
+            ],
+            [
+              133.33333333333334,
+              50
+            ],
+            [
+              133.33333333333334,
+              60
+            ],
+            [
+              200.0,
+              60
+            ],
+            [
+              200.0,
+              70
+            ],
+            [
+              133.33333333333334,
+              70
+            ],
+            [
+              133.33333333333334,
+              80
+            ],
+            [
+              200.0,
+              80
+            ],
+            [
+              200.0,
+              90
+            ],
+            [
+              133.33333333333334,
+              90
+            ],
+            [
+              133.33333333333334,
+              100
+            ],
+            [
+              200.0,
+              100
+            ],
+            [
+              200.0,
+              110
+            ],
+            [
+              133.33333333333334,
+              110
+            ],
+            [
+              133.33333333333334,
+              120
+            ],
+            [
+              200.0,
+              120
+            ],
+            [
+              200.0,
+              130
+            ],
+            [
+              133.33333333333334,
+              130
+            ],
+            [
+              133.33333333333334,
+              140
+            ],
+            [
+              200.0,
+              140
+            ],
+            [
+              200.0,
+              150
+            ],
+            [
+              133.33333333333334,
+              150
+            ]
+          ],
+          "path_length_m": 1216.67,
+          "has_obstacle": false,
+          "obstacle_position": null,
+          "collected_count": 32
+        }
+      },
+      "path_viz_path": "D:\\2026011526-参赛总文件夹\\2026011526-02素材与源码\\06-辅助数据\\drone_collected_data\\patrol_1785207542\\path_planning.png",
+      "data_path": "D:\\2026011526-参赛总文件夹\\2026011526-02素材与源码\\06-辅助数据\\drone_collected_data\\patrol_1785207542\\all_collected",
+      "has_obstacle": false,
+      "obstacle_position": null
+    },
+    "disease_result": {
+      "status": "success",
+      "total_images": 1,
+      "disease_images": 0,
+      "detail": [
+        {
+          "image_name": "patrol_1785207542_path_planning.png",
+          "has_disease": false,
+          "disease_list": []
+        }
+      ],
+      "class_names": {
+        "0": "Apple___Apple_scab",
+        "1": "Apple___Black_rot",
+        "2": "Apple___Cedar_apple_rust",
+        "3": "Apple___healthy",
+        "4": "Blueberry___healthy",
+        "5": "Cherry_(including_sour)___Powdery_mildew",
+        "6": "Cherry_(including_sour)___healthy",
+        "7": "Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot",
+        "8": "Corn_(maize)___Common_rust_",
+        "9": "Corn_(maize)___Northern_Leaf_Blight",
+        "10": "Corn_(maize)___healthy",
+        "11": "Grape___Black_rot",
+        "12": "Grape___Esca_(Black_Measles)",
+        "13": "Grape___Leaf_blight_(Isariopsis_Leaf_Spot)",
+        "14": "Grape___healthy",
+        "15": "Orange___Haunglongbing_(Citrus_greening)",
+        "16": "Peach___Bacterial_spot",
+        "17": "Peach___healthy",
+        "18": "Pepper,_bell___Bacterial_spot",
+        "19": "Pepper,_bell___healthy",
+        "20": "Potato___Early_blight",
+        "21": "Potato___Late_blight",
+        "22": "Potato___healthy",
+        "23": "Raspberry___healthy",
+        "24": "Soybean___healthy",
+        "25": "Squash___Powdery_mildew",
+        "26": "Strawberry___Leaf_scorch",
+        "27": "Strawberry___healthy",
+        "28": "Tomato___Bacterial_spot",
+        "29": "Tomato___Early_blight",
+        "30": "Tomato___Late_blight",
+        "31": "Tomato___Leaf_Mold",
+        "32": "Tomato___Septoria_leaf_spot",
+        "33": "Tomato___Spider_mites Two-spotted_spider_mite",
+        "34": "Tomato___Target_Spot",
+        "35": "Tomato___Tomato_Yellow_Leaf_Curl_Virus",
+        "36": "Tomato___Tomato_mosaic_virus",
+        "37": "Tomato___healthy"
+      }
+    },
+    "web_url": "http://localhost:54321/report/1785207547",
+    "report_file": "D:\\2026011526-参赛总文件夹\\2026011526-02素材与源码\\02-前端源码\\前端页面\\reports\\report_1785207547.json"
+  },
+  "patrol_1785209371": {
+    "llm_response": "LLM不可用，使用默认参数",
+    "dispatch_params": {
+      "area": "default_farm",
+      "drone_num": 3,
+      "path": "zigzag",
+      "area_bounds": [
+        0,
+        0,
+        200,
+        150
+      ],
+      "has_obstacle": false,
+      "obstacle_position": null
+    },
+    "drone_result": {
+      "status": "success",
+      "patrol_id": "patrol_1785209371",
+      "area": "default_farm",
+      "area_bounds": [
+        0,
+        0,
+        200,
+        150
+      ],
+      "drone_num": 3,
+      "patrol_path": "zigzag",
+      "drone_status": {
+        "drone_1": {
+          "drone_id": "drone_1",
+          "sub_area": [
+            0.0,
+            0,
+            66.66666666666667,
+            150
+          ],
+          "path_length_m": 1216.67,
+          "collected_count": 32,
+          "status": "completed",
+          "image_dir": "D:\\2026011526-参赛总文件夹\\2026011526-02素材与源码\\06-辅助数据\\drone_collected_data\\patrol_1785209371\\drone_1"
+        },
+        "drone_2": {
+          "drone_id": "drone_2",
+          "sub_area": [
+            66.66666666666667,
+            0,
+            133.33333333333334,
+            150
+          ],
+          "path_length_m": 1216.67,
+          "collected_count": 32,
+          "status": "completed",
+          "image_dir": "D:\\2026011526-参赛总文件夹\\2026011526-02素材与源码\\06-辅助数据\\drone_collected_data\\patrol_1785209371\\drone_2"
+        },
+        "drone_3": {
+          "drone_id": "drone_3",
+          "sub_area": [
+            133.33333333333334,
+            0,
+            200.0,
+            150
+          ],
+          "path_length_m": 1216.67,
+          "collected_count": 32,
+          "status": "completed",
+          "image_dir": "D:\\2026011526-参赛总文件夹\\2026011526-02素材与源码\\06-辅助数据\\drone_collected_data\\patrol_1785209371\\drone_3"
+        }
+      },
+      "drone_paths": {
+        "drone_1": {
+          "sub_area": [
+            0.0,
+            0,
+            66.66666666666667,
+            150
+          ],
+          "path_points": [
+            [
+              0.0,
+              0
+            ],
+            [
+              66.66666666666667,
+              0
+            ],
+            [
+              66.66666666666667,
+              10
+            ],
+            [
+              0.0,
+              10
+            ],
+            [
+              0.0,
+              20
+            ],
+            [
+              66.66666666666667,
+              20
+            ],
+            [
+              66.66666666666667,
+              30
+            ],
+            [
+              0.0,
+              30
+            ],
+            [
+              0.0,
+              40
+            ],
+            [
+              66.66666666666667,
+              40
+            ],
+            [
+              66.66666666666667,
+              50
+            ],
+            [
+              0.0,
+              50
+            ],
+            [
+              0.0,
+              60
+            ],
+            [
+              66.66666666666667,
+              60
+            ],
+            [
+              66.66666666666667,
+              70
+            ],
+            [
+              0.0,
+              70
+            ],
+            [
+              0.0,
+              80
+            ],
+            [
+              66.66666666666667,
+              80
+            ],
+            [
+              66.66666666666667,
+              90
+            ],
+            [
+              0.0,
+              90
+            ],
+            [
+              0.0,
+              100
+            ],
+            [
+              66.66666666666667,
+              100
+            ],
+            [
+              66.66666666666667,
+              110
+            ],
+            [
+              0.0,
+              110
+            ],
+            [
+              0.0,
+              120
+            ],
+            [
+              66.66666666666667,
+              120
+            ],
+            [
+              66.66666666666667,
+              130
+            ],
+            [
+              0.0,
+              130
+            ],
+            [
+              0.0,
+              140
+            ],
+            [
+              66.66666666666667,
+              140
+            ],
+            [
+              66.66666666666667,
+              150
+            ],
+            [
+              0.0,
+              150
+            ]
+          ],
+          "path_length_m": 1216.67,
+          "has_obstacle": false,
+          "obstacle_position": null,
+          "collected_count": 32
+        },
+        "drone_2": {
+          "sub_area": [
+            66.66666666666667,
+            0,
+            133.33333333333334,
+            150
+          ],
+          "path_points": [
+            [
+              66.66666666666667,
+              0
+            ],
+            [
+              133.33333333333334,
+              0
+            ],
+            [
+              133.33333333333334,
+              10
+            ],
+            [
+              66.66666666666667,
+              10
+            ],
+            [
+              66.66666666666667,
+              20
+            ],
+            [
+              133.33333333333334,
+              20
+            ],
+            [
+              133.33333333333334,
+              30
+            ],
+            [
+              66.66666666666667,
+              30
+            ],
+            [
+              66.66666666666667,
+              40
+            ],
+            [
+              133.33333333333334,
+              40
+            ],
+            [
+              133.33333333333334,
+              50
+            ],
+            [
+              66.66666666666667,
+              50
+            ],
+            [
+              66.66666666666667,
+              60
+            ],
+            [
+              133.33333333333334,
+              60
+            ],
+            [
+              133.33333333333334,
+              70
+            ],
+            [
+              66.66666666666667,
+              70
+            ],
+            [
+              66.66666666666667,
+              80
+            ],
+            [
+              133.33333333333334,
+              80
+            ],
+            [
+              133.33333333333334,
+              90
+            ],
+            [
+              66.66666666666667,
+              90
+            ],
+            [
+              66.66666666666667,
+              100
+            ],
+            [
+              133.33333333333334,
+              100
+            ],
+            [
+              133.33333333333334,
+              110
+            ],
+            [
+              66.66666666666667,
+              110
+            ],
+            [
+              66.66666666666667,
+              120
+            ],
+            [
+              133.33333333333334,
+              120
+            ],
+            [
+              133.33333333333334,
+              130
+            ],
+            [
+              66.66666666666667,
+              130
+            ],
+            [
+              66.66666666666667,
+              140
+            ],
+            [
+              133.33333333333334,
+              140
+            ],
+            [
+              133.33333333333334,
+              150
+            ],
+            [
+              66.66666666666667,
+              150
+            ]
+          ],
+          "path_length_m": 1216.67,
+          "has_obstacle": false,
+          "obstacle_position": null,
+          "collected_count": 32
+        },
+        "drone_3": {
+          "sub_area": [
+            133.33333333333334,
+            0,
+            200.0,
+            150
+          ],
+          "path_points": [
+            [
+              133.33333333333334,
+              0
+            ],
+            [
+              200.0,
+              0
+            ],
+            [
+              200.0,
+              10
+            ],
+            [
+              133.33333333333334,
+              10
+            ],
+            [
+              133.33333333333334,
+              20
+            ],
+            [
+              200.0,
+              20
+            ],
+            [
+              200.0,
+              30
+            ],
+            [
+              133.33333333333334,
+              30
+            ],
+            [
+              133.33333333333334,
+              40
+            ],
+            [
+              200.0,
+              40
+            ],
+            [
+              200.0,
+              50
+            ],
+            [
+              133.33333333333334,
+              50
+            ],
+            [
+              133.33333333333334,
+              60
+            ],
+            [
+              200.0,
+              60
+            ],
+            [
+              200.0,
+              70
+            ],
+            [
+              133.33333333333334,
+              70
+            ],
+            [
+              133.33333333333334,
+              80
+            ],
+            [
+              200.0,
+              80
+            ],
+            [
+              200.0,
+              90
+            ],
+            [
+              133.33333333333334,
+              90
+            ],
+            [
+              133.33333333333334,
+              100
+            ],
+            [
+              200.0,
+              100
+            ],
+            [
+              200.0,
+              110
+            ],
+            [
+              133.33333333333334,
+              110
+            ],
+            [
+              133.33333333333334,
+              120
+            ],
+            [
+              200.0,
+              120
+            ],
+            [
+              200.0,
+              130
+            ],
+            [
+              133.33333333333334,
+              130
+            ],
+            [
+              133.33333333333334,
+              140
+            ],
+            [
+              200.0,
+              140
+            ],
+            [
+              200.0,
+              150
+            ],
+            [
+              133.33333333333334,
+              150
+            ]
+          ],
+          "path_length_m": 1216.67,
+          "has_obstacle": false,
+          "obstacle_position": null,
+          "collected_count": 32
+        }
+      },
+      "path_viz_path": "D:\\2026011526-参赛总文件夹\\2026011526-02素材与源码\\06-辅助数据\\drone_collected_data\\patrol_1785209371\\path_planning.png",
+      "data_path": "D:\\2026011526-参赛总文件夹\\2026011526-02素材与源码\\06-辅助数据\\drone_collected_data\\patrol_1785209371\\all_collected",
+      "has_obstacle": false,
+      "obstacle_position": null
+    },
+    "disease_result": {
+      "status": "success",
+      "total_images": 1,
+      "disease_images": 0,
+      "detail": [
+        {
+          "image_name": "patrol_1785209371_path_planning.png",
+          "has_disease": false,
+          "disease_list": []
+        }
+      ],
+      "class_names": {
+        "0": "Apple___Apple_scab",
+        "1": "Apple___Black_rot",
+        "2": "Apple___Cedar_apple_rust",
+        "3": "Apple___healthy",
+        "4": "Blueberry___healthy",
+        "5": "Cherry_(including_sour)___Powdery_mildew",
+        "6": "Cherry_(including_sour)___healthy",
+        "7": "Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot",
+        "8": "Corn_(maize)___Common_rust_",
+        "9": "Corn_(maize)___Northern_Leaf_Blight",
+        "10": "Corn_(maize)___healthy",
+        "11": "Grape___Black_rot",
+        "12": "Grape___Esca_(Black_Measles)",
+        "13": "Grape___Leaf_blight_(Isariopsis_Leaf_Spot)",
+        "14": "Grape___healthy",
+        "15": "Orange___Haunglongbing_(Citrus_greening)",
+        "16": "Peach___Bacterial_spot",
+        "17": "Peach___healthy",
+        "18": "Pepper,_bell___Bacterial_spot",
+        "19": "Pepper,_bell___healthy",
+        "20": "Potato___Early_blight",
+        "21": "Potato___Late_blight",
+        "22": "Potato___healthy",
+        "23": "Raspberry___healthy",
+        "24": "Soybean___healthy",
+        "25": "Squash___Powdery_mildew",
+        "26": "Strawberry___Leaf_scorch",
+        "27": "Strawberry___healthy",
+        "28": "Tomato___Bacterial_spot",
+        "29": "Tomato___Early_blight",
+        "30": "Tomato___Late_blight",
+        "31": "Tomato___Leaf_Mold",
+        "32": "Tomato___Septoria_leaf_spot",
+        "33": "Tomato___Spider_mites Two-spotted_spider_mite",
+        "34": "Tomato___Target_Spot",
+        "35": "Tomato___Tomato_Yellow_Leaf_Curl_Virus",
+        "36": "Tomato___Tomato_mosaic_virus",
+        "37": "Tomato___healthy"
+      }
+    },
+    "web_url": "http://localhost:54321/report/1785209375",
+    "report_file": "D:\\2026011526-参赛总文件夹\\2026011526-02素材与源码\\02-前端源码\\前端页面\\reports\\report_1785209375.json"
+  },
+  "patrol_1785222270": {
+    "llm_response": "LLM不可用，使用默认参数",
+    "dispatch_params": {
+      "area": "default_farm",
+      "drone_num": 3,
+      "path": "zigzag",
+      "area_bounds": [
+        0,
+        0,
+        200,
+        150
+      ],
+      "has_obstacle": false,
+      "obstacle_position": null
+    },
+    "drone_result": {
+      "status": "success",
+      "patrol_id": "patrol_1785222270",
+      "area": "default_farm",
+      "area_bounds": [
+        0,
+        0,
+        200,
+        150
+      ],
+      "drone_num": 3,
+      "patrol_path": "zigzag",
+      "drone_status": {
+        "drone_1": {
+          "drone_id": "drone_1",
+          "sub_area": [
+            0.0,
+            0,
+            66.66666666666667,
+            150
+          ],
+          "path_length_m": 1216.67,
+          "collected_count": 32,
+          "status": "completed",
+          "image_dir": "D:\\2026011526-参赛总文件夹\\2026011526-02素材与源码\\06-辅助数据\\drone_collected_data\\patrol_1785222270\\drone_1"
+        },
+        "drone_2": {
+          "drone_id": "drone_2",
+          "sub_area": [
+            66.66666666666667,
+            0,
+            133.33333333333334,
+            150
+          ],
+          "path_length_m": 1216.67,
+          "collected_count": 32,
+          "status": "completed",
+          "image_dir": "D:\\2026011526-参赛总文件夹\\2026011526-02素材与源码\\06-辅助数据\\drone_collected_data\\patrol_1785222270\\drone_2"
+        },
+        "drone_3": {
+          "drone_id": "drone_3",
+          "sub_area": [
+            133.33333333333334,
+            0,
+            200.0,
+            150
+          ],
+          "path_length_m": 1216.67,
+          "collected_count": 32,
+          "status": "completed",
+          "image_dir": "D:\\2026011526-参赛总文件夹\\2026011526-02素材与源码\\06-辅助数据\\drone_collected_data\\patrol_1785222270\\drone_3"
+        }
+      },
+      "drone_paths": {
+        "drone_1": {
+          "sub_area": [
+            0.0,
+            0,
+            66.66666666666667,
+            150
+          ],
+          "path_points": [
+            [
+              0.0,
+              0
+            ],
+            [
+              66.66666666666667,
+              0
+            ],
+            [
+              66.66666666666667,
+              10
+            ],
+            [
+              0.0,
+              10
+            ],
+            [
+              0.0,
+              20
+            ],
+            [
+              66.66666666666667,
+              20
+            ],
+            [
+              66.66666666666667,
+              30
+            ],
+            [
+              0.0,
+              30
+            ],
+            [
+              0.0,
+              40
+            ],
+            [
+              66.66666666666667,
+              40
+            ],
+            [
+              66.66666666666667,
+              50
+            ],
+            [
+              0.0,
+              50
+            ],
+            [
+              0.0,
+              60
+            ],
+            [
+              66.66666666666667,
+              60
+            ],
+            [
+              66.66666666666667,
+              70
+            ],
+            [
+              0.0,
+              70
+            ],
+            [
+              0.0,
+              80
+            ],
+            [
+              66.66666666666667,
+              80
+            ],
+            [
+              66.66666666666667,
+              90
+            ],
+            [
+              0.0,
+              90
+            ],
+            [
+              0.0,
+              100
+            ],
+            [
+              66.66666666666667,
+              100
+            ],
+            [
+              66.66666666666667,
+              110
+            ],
+            [
+              0.0,
+              110
+            ],
+            [
+              0.0,
+              120
+            ],
+            [
+              66.66666666666667,
+              120
+            ],
+            [
+              66.66666666666667,
+              130
+            ],
+            [
+              0.0,
+              130
+            ],
+            [
+              0.0,
+              140
+            ],
+            [
+              66.66666666666667,
+              140
+            ],
+            [
+              66.66666666666667,
+              150
+            ],
+            [
+              0.0,
+              150
+            ]
+          ],
+          "path_length_m": 1216.67,
+          "has_obstacle": false,
+          "obstacle_position": null,
+          "collected_count": 32
+        },
+        "drone_2": {
+          "sub_area": [
+            66.66666666666667,
+            0,
+            133.33333333333334,
+            150
+          ],
+          "path_points": [
+            [
+              66.66666666666667,
+              0
+            ],
+            [
+              133.33333333333334,
+              0
+            ],
+            [
+              133.33333333333334,
+              10
+            ],
+            [
+              66.66666666666667,
+              10
+            ],
+            [
+              66.66666666666667,
+              20
+            ],
+            [
+              133.33333333333334,
+              20
+            ],
+            [
+              133.33333333333334,
+              30
+            ],
+            [
+              66.66666666666667,
+              30
+            ],
+            [
+              66.66666666666667,
+              40
+            ],
+            [
+              133.33333333333334,
+              40
+            ],
+            [
+              133.33333333333334,
+              50
+            ],
+            [
+              66.66666666666667,
+              50
+            ],
+            [
+              66.66666666666667,
+              60
+            ],
+            [
+              133.33333333333334,
+              60
+            ],
+            [
+              133.33333333333334,
+              70
+            ],
+            [
+              66.66666666666667,
+              70
+            ],
+            [
+              66.66666666666667,
+              80
+            ],
+            [
+              133.33333333333334,
+              80
+            ],
+            [
+              133.33333333333334,
+              90
+            ],
+            [
+              66.66666666666667,
+              90
+            ],
+            [
+              66.66666666666667,
+              100
+            ],
+            [
+              133.33333333333334,
+              100
+            ],
+            [
+              133.33333333333334,
+              110
+            ],
+            [
+              66.66666666666667,
+              110
+            ],
+            [
+              66.66666666666667,
+              120
+            ],
+            [
+              133.33333333333334,
+              120
+            ],
+            [
+              133.33333333333334,
+              130
+            ],
+            [
+              66.66666666666667,
+              130
+            ],
+            [
+              66.66666666666667,
+              140
+            ],
+            [
+              133.33333333333334,
+              140
+            ],
+            [
+              133.33333333333334,
+              150
+            ],
+            [
+              66.66666666666667,
+              150
+            ]
+          ],
+          "path_length_m": 1216.67,
+          "has_obstacle": false,
+          "obstacle_position": null,
+          "collected_count": 32
+        },
+        "drone_3": {
+          "sub_area": [
+            133.33333333333334,
+            0,
+            200.0,
+            150
+          ],
+          "path_points": [
+            [
+              133.33333333333334,
+              0
+            ],
+            [
+              200.0,
+              0
+            ],
+            [
+              200.0,
+              10
+            ],
+            [
+              133.33333333333334,
+              10
+            ],
+            [
+              133.33333333333334,
+              20
+            ],
+            [
+              200.0,
+              20
+            ],
+            [
+              200.0,
+              30
+            ],
+            [
+              133.33333333333334,
+              30
+            ],
+            [
+              133.33333333333334,
+              40
+            ],
+            [
+              200.0,
+              40
+            ],
+            [
+              200.0,
+              50
+            ],
+            [
+              133.33333333333334,
+              50
+            ],
+            [
+              133.33333333333334,
+              60
+            ],
+            [
+              200.0,
+              60
+            ],
+            [
+              200.0,
+              70
+            ],
+            [
+              133.33333333333334,
+              70
+            ],
+            [
+              133.33333333333334,
+              80
+            ],
+            [
+              200.0,
+              80
+            ],
+            [
+              200.0,
+              90
+            ],
+            [
+              133.33333333333334,
+              90
+            ],
+            [
+              133.33333333333334,
+              100
+            ],
+            [
+              200.0,
+              100
+            ],
+            [
+              200.0,
+              110
+            ],
+            [
+              133.33333333333334,
+              110
+            ],
+            [
+              133.33333333333334,
+              120
+            ],
+            [
+              200.0,
+              120
+            ],
+            [
+              200.0,
+              130
+            ],
+            [
+              133.33333333333334,
+              130
+            ],
+            [
+              133.33333333333334,
+              140
+            ],
+            [
+              200.0,
+              140
+            ],
+            [
+              200.0,
+              150
+            ],
+            [
+              133.33333333333334,
+              150
+            ]
+          ],
+          "path_length_m": 1216.67,
+          "has_obstacle": false,
+          "obstacle_position": null,
+          "collected_count": 32
+        }
+      },
+      "path_viz_path": "D:\\2026011526-参赛总文件夹\\2026011526-02素材与源码\\06-辅助数据\\drone_collected_data\\patrol_1785222270\\path_planning.png",
+      "data_path": "D:\\2026011526-参赛总文件夹\\2026011526-02素材与源码\\06-辅助数据\\drone_collected_data\\patrol_1785222270\\all_collected",
+      "has_obstacle": false,
+      "obstacle_position": null
+    },
+    "disease_result": {
+      "status": "success",
+      "total_images": 1,
+      "disease_images": 0,
+      "detail": [
+        {
+          "image_name": "patrol_1785222270_path_planning.png",
+          "has_disease": false,
+          "disease_list": []
+        }
+      ],
+      "class_names": {
+        "0": "Apple___Apple_scab",
+        "1": "Apple___Black_rot",
+        "2": "Apple___Cedar_apple_rust",
+        "3": "Apple___healthy",
+        "4": "Blueberry___healthy",
+        "5": "Cherry_(including_sour)___Powdery_mildew",
+        "6": "Cherry_(including_sour)___healthy",
+        "7": "Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot",
+        "8": "Corn_(maize)___Common_rust_",
+        "9": "Corn_(maize)___Northern_Leaf_Blight",
+        "10": "Corn_(maize)___healthy",
+        "11": "Grape___Black_rot",
+        "12": "Grape___Esca_(Black_Measles)",
+        "13": "Grape___Leaf_blight_(Isariopsis_Leaf_Spot)",
+        "14": "Grape___healthy",
+        "15": "Orange___Haunglongbing_(Citrus_greening)",
+        "16": "Peach___Bacterial_spot",
+        "17": "Peach___healthy",
+        "18": "Pepper,_bell___Bacterial_spot",
+        "19": "Pepper,_bell___healthy",
+        "20": "Potato___Early_blight",
+        "21": "Potato___Late_blight",
+        "22": "Potato___healthy",
+        "23": "Raspberry___healthy",
+        "24": "Soybean___healthy",
+        "25": "Squash___Powdery_mildew",
+        "26": "Strawberry___Leaf_scorch",
+        "27": "Strawberry___healthy",
+        "28": "Tomato___Bacterial_spot",
+        "29": "Tomato___Early_blight",
+        "30": "Tomato___Late_blight",
+        "31": "Tomato___Leaf_Mold",
+        "32": "Tomato___Septoria_leaf_spot",
+        "33": "Tomato___Spider_mites Two-spotted_spider_mite",
+        "34": "Tomato___Target_Spot",
+        "35": "Tomato___Tomato_Yellow_Leaf_Curl_Virus",
+        "36": "Tomato___Tomato_mosaic_virus",
+        "37": "Tomato___healthy"
+      }
+    },
+    "web_url": "http://localhost:54321/report/1785222271",
+    "report_file": "D:\\2026011526-参赛总文件夹\\2026011526-02素材与源码\\02-前端源码\\前端页面\\reports\\report_1785222271.json"
+  }
+}
