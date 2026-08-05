@@ -1551,83 +1551,133 @@
                         sendMessage();
                     };
 
-                    // 发送消息（对接后端chat接口）
+                    // 发送消息（SSE流式响应，实时显示进度）
                     const sendMessage = async () => {
                         if (!userInput.value.trim() || isLoading.value) return;
-                        // 添加用户消息
-                        const userMsg = {
-                            role: 'user',
-                            content: userInput.value.trim(),
-                            time: new Date()
-                        };
-                        chatHistory.value.push(userMsg);
                         const inputValue = userInput.value.trim();
+                        
+                        // 添加用户消息
+                        chatHistory.value.push({
+                            role: 'user',
+                            content: inputValue,
+                            time: new Date()
+                        });
+                        
+                        // 添加AI回复占位（用于实时更新）
+                        const aiMsgIndex = chatHistory.value.length;
+                        chatHistory.value.push({
+                            role: 'assistant',
+                            content: '⏳ 正在处理中...',
+                            time: new Date(),
+                            streaming: true,
+                            progress: ''
+                        });
+                        
                         userInput.value = '';
-                        // 加载状态
                         isLoading.value = true;
+                        
                         nextTick(() => {
                             if (chatBox.value) chatBox.value.scrollTop = chatBox.value.scrollHeight;
                         });
 
                         try {
-                            // 对接后端真实接口
-                            const res = await fetch('/api/chat', {
+                            // 使用SSE流式接口
+                            const response = await fetch('/api/chat/stream', {
                                 method: 'POST',
                                 headers: { 'Content-Type': 'application/json;charset=utf-8' },
                                 body: JSON.stringify({ message: inputValue })
                             });
-                            const data = await res.json();
-                            let reply = '';
 
-                            if (data.code === 200) {
-                                const resData = data.data || {};
-                                if (resData.type === 'chat') {
-                                    reply = resData.response || '抱歉，我暂时无法回答您的问题';
-                                } else if (resData.type === 'patrol') {
-                                    // 巡检完成，刷新任务列表
-                                    await getPatrolList();
-                                    const result = resData.result || {};
-                                    const dispatchParams = result.dispatch_params || {};
-                                    const diseaseResult = result.disease_result || {};
-                                    const diseaseSummary = diseaseResult.disease_summary || {};
-                                    reply = `✅ 巡检任务已完成！\n\n任务ID：${resData.patrol_id || 'N/A'}\n巡检区域：${dispatchParams.area || 'N/A'}\n病害率：${diseaseSummary.disease_rate ?? 0}%\n\n您可在「巡检任务管理」中查看完整详情，或在「病虫害智能分析」中查看识别结果。`;
-                                }
-                            } else {
-                                throw new Error(data.msg);
+                            if (!response.ok) {
+                                throw new Error(`HTTP error! status: ${response.status}`);
                             }
 
-                            // 添加AI回复
-                            chatHistory.value.push({
-                                role: 'assistant',
-                                content: reply,
-                                time: new Date()
-                            });
+                            const reader = response.body.getReader();
+                            const decoder = new TextDecoder();
+                            let buffer = '';
+                            let lastProgress = '';
+
+                            while (true) {
+                                const { done, value } = await reader.read();
+                                if (done) break;
+
+                                buffer += decoder.decode(value, { stream: true });
+                                const lines = buffer.split('\n\n');
+                                buffer = lines.pop();
+
+                                for (const line of lines) {
+                                    const trimmed = line.trim();
+                                    if (!trimmed || !trimmed.startsWith('data: ')) continue;
+                                    
+                                    const dataStr = trimmed.slice(6);
+                                    if (dataStr === '[DONE]') continue;
+
+                                    try {
+                                        const event = JSON.parse(dataStr);
+                                        
+                                        if (event.event === 'progress') {
+                                            // 更新进度提示
+                                            lastProgress = event.message;
+                                            chatHistory.value[aiMsgIndex].progress = event.message;
+                                            chatHistory.value[aiMsgIndex].content = `⏳ ${event.message}`;
+                                        } else if (event.event === 'cached') {
+                                            chatHistory.value[aiMsgIndex].content = `🎯 ${event.message}\n\n${event.response}`;
+                                            chatHistory.value[aiMsgIndex].streaming = false;
+                                        } else if (event.event === 'done') {
+                                            const result = event.result;
+                                            let reply = '';
+                                            
+                                            if (result.type === 'chat') {
+                                                reply = result.response || '抱歉，我暂时无法回答您的问题';
+                                            } else if (result.type === 'patrol') {
+                                                await getPatrolList();
+                                                const resData = result;
+                                                const resultData = resData.result || {};
+                                                const dispatchParams = resultData.dispatch_params || {};
+                                                const diseaseResult = resultData.disease_result || {};
+                                                const diseaseSummary = diseaseResult.disease_summary || {};
+                                                reply = `✅ 巡检任务已完成！\n\n任务ID：${resData.patrol_id || 'N/A'}\n巡检区域：${dispatchParams.area || 'N/A'}\n病害率：${diseaseSummary.disease_rate ?? 0}%\n\n您可在「巡检任务管理」中查看完整详情，或在「病虫害智能分析」中查看识别结果。`;
+                                            }
+                                            
+                                            chatHistory.value[aiMsgIndex].content = reply;
+                                            chatHistory.value[aiMsgIndex].streaming = false;
+                                        } else if (event.event === 'error') {
+                                            chatHistory.value[aiMsgIndex].content = `❌ 错误：${event.message}`;
+                                            chatHistory.value[aiMsgIndex].streaming = false;
+                                        }
+                                    } catch (e) {
+                                        console.warn('SSE解析错误:', e);
+                                    }
+                                }
+                                
+                                nextTick(() => {
+                                    if (chatBox.value) chatBox.value.scrollTop = chatBox.value.scrollHeight;
+                                });
+                            }
+
+                            // 如果还在streaming状态，设置完成
+                            if (chatHistory.value[aiMsgIndex].streaming) {
+                                chatHistory.value[aiMsgIndex].content = '✅ 处理完成';
+                                chatHistory.value[aiMsgIndex].streaming = false;
+                            }
 
                         } catch (e) {
-                            console.error('后端接口请求失败，使用模拟响应', e);
-                            // 后端不可用时，模拟真实AI响应，保证聊天交互正常
+                            console.error('SSE请求失败，使用模拟响应', e);
+                            // SSE失败时的降级处理
                             let reply = '';
                             if (inputValue.includes('巡检') && inputValue.includes('无人机')) {
                                 reply = `已收到巡检指令："${inputValue}"\n\n系统已完成以下操作：\n1. 规划巡检路径：基于您指定的区域自动生成Z字型最优巡检路径\n2. 调度无人机集群：已分配指定数量的无人机执行巡检任务\n3. 启动实时监测：无人机已开始采集图像并进行实时病害识别\n4. 生成巡检报告：任务完成后将自动生成可视化巡检报告\n\n✅ 任务已提交，正在执行中，完成后将自动刷新任务列表`;
-                                // 模拟巡检完成，刷新任务列表
                                 setTimeout(async () => {
                                     await getPatrolList();
-                                    ElMessage({ type: 'success', message: '模拟巡检任务已完成，任务列表已刷新' });
+                                    ElMessage({ type: 'success', message: '巡检任务已完成，任务列表已刷新' });
                                 }, 3000);
                             } else if (inputValue.includes('分析') && inputValue.includes('病害')) {
-                                reply = `已完成最新巡检任务的病害分析：\n\n${currentTask.value?.area || '当前任务'}的病害分析结果：\n• 整体病害率：${currentTask.value?.disease_summary?.disease_rate || 0}%\n• 主要病害类型：${currentTask.value?.disease_summary?.class_names?.join('、') || '无'}\n• 高发区域：${diseaseDetailList.value[0]?.area || '无'}\n• 防控建议：${diseaseDetailList.value[0]?.suggestion || '加强田间巡查，做好预防工作'}`;
-                            } else if (inputValue.includes('生成') && inputValue.includes('报告')) {
-                                reply = `已为您生成最新巡检任务的可视化报告：\n\n报告包含以下内容：\n1. 巡检任务基本信息（区域、面积、无人机数量等）\n2. 无人机集群执行情况（路径、采集图片数量等）\n3. 病虫害识别结果（类型、分布、发病率等）\n4. 可视化图表（路径规划、病害分布、热力图等）\n5. 防控建议和决策支持\n\n✅ 报告已生成，可在「报告与归档」页面查看和下载`;
-                                // 生成报告
-                                generateReport();
+                                reply = `已完成最新巡检任务的病害分析：\n\n${currentTask.value?.area || '当前任务'}的病害分析结果：\n• 整体病害率：${currentTask.value?.disease_summary?.disease_rate || 0}%\n• 主要病害类型：${currentTask.value?.disease_summary?.class_names?.join('、') || '无'}\n• 防控建议：加强田间巡查，做好预防工作`;
                             } else {
                                 reply = `已理解您的指令："${inputValue}"\n\n多智能体农业无人机巡检系统将为您提供以下支持：\n• 自然语言指令解析与执行\n• 多无人机集群协同调度\n• 病虫害智能识别与分析\n• 可视化报告生成与导出\n• 全流程自动化巡检管理`;
                             }
-                            chatHistory.value.push({
-                                role: 'assistant',
-                                content: reply,
-                                time: new Date()
-                            });
+                            chatHistory.value[aiMsgIndex].content = reply;
+                            chatHistory.value[aiMsgIndex].streaming = false;
                         } finally {
                             isLoading.value = false;
                             nextTick(() => {

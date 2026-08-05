@@ -583,8 +583,10 @@ class DroneScheduler:
                     )
 
                     if control_signal.get("action") == "avoid_obstacle":
-                        obstacle_pos = control_signal.get("obstacle_position", [100, 75])
-                        logger.info(f"🚨 检测到障碍，重新规划绕障路径")
+                        obstacle_pos = self._convert_vla_coordinates(
+                            control_signal.get("obstacle_position", [50, 50]), area_bounds
+                        )
+                        logger.info(f"🚨 VLA检测到障碍物，世界坐标: {obstacle_pos}，重新规划绕障路径")
                         drone_paths = self.plan_path(
                             area_bounds, use_drone_num, path,
                             has_obstacle=True, obstacle_position=obstacle_pos
@@ -606,13 +608,9 @@ class DroneScheduler:
         try:
             if self.flight_controller.connect():
                 self.flight_controller.arm_and_takeoff(DEFAULT_TAKEOFF_ALTITUDE)
-                
-                for drone_id, path_data in drone_paths.items():
-                    path_points = path_data['path_points']
-                    for x, y in path_points:
-                        self.flight_controller.goto_waypoint(x, y)
-                    path_data['collected_count'] = len(path_points)
-                
+
+                self._execute_flight_with_vla(drone_paths, area_bounds, vla_controller)
+
                 self.flight_controller.land()
             else:
                 self._simulate_flight(drone_paths, area_bounds)
@@ -653,6 +651,104 @@ class DroneScheduler:
             "has_obstacle": self.has_obstacle,
             "obstacle_position": self.obstacle_position
         }
+
+    def _convert_vla_coordinates(self, vla_position, area_bounds):
+        """将VLA返回的[0-100]图片相对坐标转换为世界坐标"""
+        x_min, y_min, x_max, y_max = area_bounds
+        rel_x, rel_y = vla_position[0], vla_position[1]
+        world_x = (rel_x / 100.0) * (x_max - x_min) + x_min
+        world_y = (rel_y / 100.0) * (y_max - y_min) + y_min
+        return [round(world_x, 2), round(world_y, 2)]
+
+    def _execute_flight_with_vla(self, drone_paths, area_bounds, vla_controller):
+        """执行飞行任务，支持航点级VLA实时避障"""
+        VLA_CHECK_INTERVAL = 5  # 每5个航点调用一次VLA检测（避免模拟时间过长）
+        MAX_VLA_CHECKS = 3      # 最多调用VLA 3次（避免模拟时间过长）
+
+        vla_check_count = 0
+        waypoint_index = 0
+
+        for drone_id, path_data in drone_paths.items():
+            path_points = path_data['path_points']
+            actual_path = []
+
+            for i, (x, y) in enumerate(path_points):
+                self.flight_controller.goto_waypoint(x, y)
+                actual_path.append((x, y))
+                waypoint_index += 1
+
+                # 航点级VLA实时检测
+                if (vla_controller is not None
+                        and waypoint_index % VLA_CHECK_INTERVAL == 0
+                        and vla_check_count < MAX_VLA_CHECKS):
+                    try:
+                        visual_data = self._load_test_image()
+                        if visual_data and len(visual_data) > 100:
+                            current_state = self._get_current_state()
+                            current_state['position'] = [x, y, DEFAULT_TAKEOFF_ALTITUDE]
+
+                            control_signal = vla_controller.process_visual_input(
+                                visual_data, current_state,
+                                language_instruction=f"无人机在({x:.1f},{y:.1f})位置，检测前方是否有障碍物"
+                            )
+                            vla_check_count += 1
+
+                            if control_signal.get("action") == "avoid_obstacle":
+                                obstacle_pos = self._convert_vla_coordinates(
+                                    control_signal.get("obstacle_position", [50, 50]),
+                                    area_bounds
+                                )
+                                logger.info(f"🚨 航点({x:.1f},{y:.1f})实时检测到障碍物: {obstacle_pos}")
+
+                                # 生成局部绕障路径
+                                remaining_points = path_points[i + 1:]
+                                if remaining_points:
+                                    avoidance_points = self._generate_local_avoidance(
+                                        (x, y), remaining_points[0], obstacle_pos
+                                    )
+                                    for ap in avoidance_points:
+                                        self.flight_controller.goto_waypoint(ap[0], ap[1])
+                                        actual_path.append(ap)
+
+                                self.has_obstacle = True
+                                self.obstacle_position = obstacle_pos
+                    except Exception as e:
+                        logger.warning(f"航点VLA检测失败: {e}")
+
+            path_data['collected_count'] = len(actual_path)
+            path_data['path_points'] = actual_path
+
+    def _generate_local_avoidance(self, current_pos, next_pos, obstacle_pos, radius=15):
+        """生成局部绕障路径段（半圆弧）"""
+        cx, cy = current_pos
+        ox, oy = obstacle_pos
+        path = []
+
+        # 计算障碍物相对于当前点的方向
+        dx = ox - cx
+        dy = oy - cy
+        dist = math.sqrt(dx ** 2 + dy ** 2)
+
+        if dist < 1:
+            return [next_pos]
+
+        # 生成绕障弧线
+        start_angle = math.atan2(dy, dx)
+        end_angle = math.atan2(next_pos[1] - oy, next_pos[0] - ox)
+
+        # 选择较短的弧线方向
+        if end_angle < start_angle:
+            end_angle += 2 * math.pi
+
+        steps = 8
+        for i in range(steps + 1):
+            angle = start_angle + (end_angle - start_angle) * i / steps
+            px = ox + radius * math.cos(angle)
+            py = oy + radius * math.sin(angle)
+            path.append((round(px, 2), round(py, 2)))
+
+        path.append(next_pos)
+        return path
 
     def _simulate_flight(self, drone_paths, area_bounds):
         """模拟飞行模式"""

@@ -217,6 +217,74 @@ class AgricultureDroneAgent:
             "obstacle_position": None
         }
 
+    def _parse_json_response(self, llm_response):
+        """安全解析LLM返回的JSON，不使用exec()"""
+        # 方式1：直接解析
+        try:
+            data = json.loads(llm_response.strip())
+            if isinstance(data, dict):
+                return self._validate_dispatch_params(data)
+        except json.JSONDecodeError:
+            pass
+
+        # 方式2：提取JSON代码块
+        json_match = re.search(r'\{[\s\S]*\}', llm_response)
+        if json_match:
+            try:
+                data = json.loads(json_match.group())
+                if isinstance(data, dict):
+                    return self._validate_dispatch_params(data)
+            except json.JSONDecodeError:
+                # 尝试修复常见JSON问题
+                fixed = json_match.group()
+                fixed = re.sub(r'```json\s*|\s*```', '', fixed)
+                fixed = fixed.replace('false', 'false').replace('true', 'true')
+                fixed = re.sub(r',\s*}', '}', fixed)
+                fixed = re.sub(r',\s*]', ']', fixed)
+                try:
+                    data = json.loads(fixed)
+                    if isinstance(data, dict):
+                        return self._validate_dispatch_params(data)
+                except json.JSONDecodeError:
+                    pass
+
+        return None
+
+    def _validate_dispatch_params(self, data):
+        """验证并规范化调度参数"""
+        # 确保必需字段存在且类型正确
+        params = {
+            "area": str(data.get("area", "default_farm")),
+            "path": str(data.get("path", "zigzag")),
+            "has_obstacle": bool(data.get("has_obstacle", False)),
+        }
+
+        # drone_num 必须是1-10的整数
+        drone_num = data.get("drone_num", 3)
+        try:
+            drone_num = int(drone_num)
+            params["drone_num"] = max(1, min(10, drone_num))
+        except (ValueError, TypeError):
+            params["drone_num"] = 3
+
+        # area_bounds 必须是4个数字的列表
+        area_bounds = data.get("area_bounds", [0, 0, 200, 150])
+        if (isinstance(area_bounds, list) and len(area_bounds) == 4
+                and all(isinstance(v, (int, float)) for v in area_bounds)):
+            params["area_bounds"] = area_bounds
+        else:
+            params["area_bounds"] = [0, 0, 200, 150]
+
+        # obstacle_position
+        obstacle_position = data.get("obstacle_position")
+        if (isinstance(obstacle_position, list) and len(obstacle_position) == 2
+                and all(isinstance(v, (int, float)) for v in obstacle_position)):
+            params["obstacle_position"] = obstacle_position
+        else:
+            params["obstacle_position"] = None
+
+        return params
+
     def process(self, command, run_python_code=True):
         if not drone_sch:
             raise Exception("无人机调度器不可用，无法执行巡检")
@@ -227,26 +295,22 @@ class AgricultureDroneAgent:
         try:
             enhanced_command = f"""用户指令：{command}
 
-请直接输出以下格式的Python代码，不要任何其他文字：
-```python
-dispatch_params = {{
+请直接输出以下格式的JSON，不要任何其他文字、不要markdown代码块标记：
+{{
     "area": "农田区域",
     "drone_num": 3,
     "path": "zigzag",
     "area_bounds": [0, 0, 200, 150],
-    "has_obstacle": True,
+    "has_obstacle": true,
     "obstacle_position": [100, 75]
-}}
-```"""
+}}"""
             llm_response = self.ask(enhanced_command)
         except Exception as e:
             llm_response = None
 
         dispatch_params = None
-        if llm_response and run_python_code:
-            python_code = self.extract_python_code(llm_response)
-            if python_code:
-                dispatch_params = self.safe_exec_code(python_code)
+        if llm_response:
+            dispatch_params = self._parse_json_response(llm_response)
 
         if not dispatch_params:
             dispatch_params = self._get_default_dispatch_params()

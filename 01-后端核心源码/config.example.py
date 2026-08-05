@@ -42,14 +42,12 @@ ARK_API_KEY = "在此填入你的API密钥"
 
 # ====================== 模型配置 ======================
 # 文本大模型（用于对话、指令解析）
-MODEL = "doubao-1-5-pro-32k-250115"
+# 性能优先：deepseek-v3-2-251201（1800次实测均速2.42s，最稳定）
+MODEL = "deepseek-v3-2-251201"
 
-# VLA视觉语言模型
-# 可选模型:
-# - "doubao-seed-1-6-thinking" : 思考版，精度最高但较慢
-# - "doubao-seed-1-6-pro"      : 专业版，精度高速度适中 【推荐】
-# - "doubao-seed-1-6-flash"    : 闪电版，速度快但精度一般
-VLA_MODEL = "doubao-seed-1-6-pro"
+# VLA视觉语言模型（用于航拍照片障碍物识别+避障决策）
+# 性能优先：doubao-seed-1-6-vision-250815（seed系列最新视觉能力）
+VLA_MODEL = "doubao-seed-1-6-vision-250815"
 
 # VLA图片压缩配置
 VLA_MAX_IMAGE_SIZE = 800

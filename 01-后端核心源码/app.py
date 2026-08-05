@@ -3,7 +3,9 @@ import os
 import json
 import time
 import threading
-from flask import Flask, jsonify, request, send_from_directory
+import hashlib
+import queue
+from flask import Flask, jsonify, request, send_from_directory, Response, stream_with_context
 from flask_cors import CORS
 import agriculture_drone_agent
 from agriculture_drone_agent import init_core_modules, AgricultureDroneAgent
@@ -25,6 +27,17 @@ AGENT_AVAILABLE = False
 agri_agent = None
 PATROL_DATA = {}
 _lock = threading.Lock()
+
+# LLM结果缓存（避免重复调用）
+_llm_cache = {}
+_llm_cache_lock = threading.Lock()
+LLM_CACHE_TTL = 3600  # 缓存有效期1小时
+
+# 异步任务队列和状态
+_task_queue = queue.Queue()
+_task_status = {}
+_task_status_lock = threading.Lock()
+_task_counter = 0
 
 # ====================== 持久化管理 ======================
 def load_patrol_data():
@@ -81,6 +94,108 @@ def init_agent():
     except Exception as e:
         print(f"⚠️ Agent模块初始化失败: {e}")
         AGENT_AVAILABLE = False
+
+# ====================== LLM缓存管理 ======================
+def get_llm_cache(key):
+    """获取LLM缓存"""
+    with _llm_cache_lock:
+        if key in _llm_cache:
+            entry = _llm_cache[key]
+            if time.time() - entry['time'] < LLM_CACHE_TTL:
+                return entry['value']
+            else:
+                del _llm_cache[key]
+    return None
+
+def set_llm_cache(key, value):
+    """设置LLM缓存"""
+    with _llm_cache_lock:
+        _llm_cache[key] = {'value': value, 'time': time.time()}
+
+def clear_llm_cache():
+    """清除LLM缓存"""
+    with _llm_cache_lock:
+        _llm_cache.clear()
+
+def make_cache_key(text):
+    """生成缓存key"""
+    return hashlib.md5(text.encode()).hexdigest()
+
+# ====================== 异步任务管理 ======================
+def add_task_status(task_id, status, message='', data=None):
+    """更新任务状态"""
+    with _task_status_lock:
+        _task_status[task_id] = {
+            'task_id': task_id,
+            'status': status,  # pending, processing, completed, failed
+            'message': message,
+            'data': data,
+            'updated_at': time.time()
+        }
+
+def get_task_status(task_id):
+    """获取任务状态"""
+    with _task_status_lock:
+        return _task_status.get(task_id)
+
+def generate_task_id():
+    """生成任务ID"""
+    global _task_counter
+    _task_counter += 1
+    return f"task_{int(time.time())}_{_task_counter}"
+
+def process_async_task(task_id, message, is_patrol):
+    """处理异步任务"""
+    try:
+        add_task_status(task_id, 'processing', '正在处理您的指令...')
+
+        if not AGENT_AVAILABLE or not agri_agent:
+            add_task_status(task_id, 'failed', 'Agent服务暂不可用')
+            return
+
+        # 检查LLM缓存
+        cache_key = make_cache_key(message)
+        cached = get_llm_cache(cache_key)
+
+        if is_patrol:
+            # 巡检任务：不缓存（每次结果都不同）
+            add_task_status(task_id, 'processing', '正在解析指令...')
+            result = agri_agent.process(message)
+
+            patrol_id = result['drone_result']['patrol_id']
+            with _lock:
+                PATROL_DATA[patrol_id] = result
+            save_patrol_data()
+
+            add_task_status(task_id, 'completed', '巡检任务完成', {
+                'type': 'patrol',
+                'patrol_id': patrol_id,
+                'result': result
+            })
+        else:
+            # 普通对话：使用缓存
+            if cached:
+                add_task_status(task_id, 'completed', '对话完成', {
+                    'type': 'chat',
+                    'response': cached,
+                    'cached': True
+                })
+                return
+
+            add_task_status(task_id, 'processing', '正在思考...')
+            response = agri_agent.ask(message)
+
+            # 存入缓存
+            set_llm_cache(cache_key, response)
+
+            add_task_status(task_id, 'completed', '对话完成', {
+                'type': 'chat',
+                'response': response,
+                'cached': False
+            })
+
+    except Exception as e:
+        add_task_status(task_id, 'failed', f'任务处理失败: {str(e)}')
 
 # ====================== 路由接口 ======================
 @app.route('/')
@@ -216,6 +331,143 @@ def chat():
             'data': None
         }), 500
 
+@app.route('/api/chat/async', methods=['POST'])
+def chat_async():
+    """异步对话接口（立即返回任务ID，后台处理）"""
+    try:
+        if not request.is_json:
+            return jsonify({'code': 400, 'msg': '请求格式必须为JSON'}), 400
+
+        user_message = request.json.get('message', '').strip()
+        if not user_message:
+            return jsonify({'code': 400, 'msg': '请输入消息内容'}), 400
+
+        is_patrol = is_patrol_command(user_message)
+        task_id = generate_task_id()
+        add_task_status(task_id, 'pending', '任务已创建，等待处理')
+
+        # 异步启动任务
+        thread = threading.Thread(
+            target=process_async_task,
+            args=(task_id, user_message, is_patrol),
+            daemon=True
+        )
+        thread.start()
+
+        return jsonify({
+            'code': 200,
+            'msg': '任务已提交',
+            'data': {
+                'task_id': task_id,
+                'is_patrol': is_patrol,
+                'message': user_message
+            }
+        })
+    except Exception as e:
+        return jsonify({'code': 500, 'msg': f'提交失败: {str(e)}'}), 500
+
+@app.route('/api/task/status/<task_id>', methods=['GET'])
+def get_async_task_status(task_id):
+    """查询异步任务状态"""
+    task = get_task_status(task_id)
+    if not task:
+        return jsonify({'code': 404, 'msg': '任务不存在'}), 404
+
+    return jsonify({
+        'code': 200,
+        'msg': 'success',
+        'data': task
+    })
+
+@app.route('/api/chat/stream', methods=['POST'])
+def chat_stream():
+    """SSE流式对话接口（实时推送处理进度）"""
+    try:
+        if not request.is_json:
+            return jsonify({'code': 400, 'msg': '请求格式必须为JSON'}), 400
+
+        user_message = request.json.get('message', '').strip()
+        if not user_message:
+            return jsonify({'code': 400, 'msg': '请输入消息内容'}), 400
+
+        is_patrol = is_patrol_command(user_message)
+        task_id = generate_task_id()
+
+        add_task_status(task_id, 'pending', '任务已创建')
+
+        def generate():
+            try:
+                yield f"data: {json.dumps({'event': 'start', 'task_id': task_id, 'message': '任务开始'})}\n\n"
+
+                if not AGENT_AVAILABLE or not agri_agent:
+                    yield f"data: {json.dumps({'event': 'error', 'message': 'Agent服务暂不可用'})}\n\n"
+                    return
+
+                cache_key = make_cache_key(user_message)
+                cached = get_llm_cache(cache_key)
+
+                if is_patrol:
+                    # 巡检任务
+                    yield f"data: {json.dumps({'event': 'progress', 'step': 'parsing', 'message': '正在解析指令...'})}\n\n"
+                    add_task_status(task_id, 'processing', '正在解析指令...')
+
+                    yield f"data: {json.dumps({'event': 'progress', 'step': 'vla', 'message': 'VLA视觉避障分析中...'})}\n\n"
+                    add_task_status(task_id, 'processing', 'VLA视觉避障分析中...')
+
+                    yield f"data: {json.dumps({'event': 'progress', 'step': 'flying', 'message': '无人机飞行巡检中...'})}\n\n"
+                    add_task_status(task_id, 'processing', '无人机飞行巡检中...')
+
+                    yield f"data: {json.dumps({'event': 'progress', 'step': 'detecting', 'message': '病虫害识别中...'})}\n\n"
+                    add_task_status(task_id, 'processing', '病虫害识别中...')
+
+                    result = agri_agent.process(user_message)
+                    patrol_id = result['drone_result']['patrol_id']
+                    with _lock:
+                        PATROL_DATA[patrol_id] = result
+                    save_patrol_data()
+
+                    add_task_status(task_id, 'completed', '巡检完成', result)
+                    yield f"data: {json.dumps({'event': 'done', 'result': {'type': 'patrol', 'patrol_id': patrol_id, 'result': result}})}\n\n"
+                else:
+                    # 普通对话
+                    if cached:
+                        add_task_status(task_id, 'completed', '对话完成', {'type': 'chat', 'response': cached, 'cached': True})
+                        yield f"data: {json.dumps({'event': 'cached', 'message': '使用缓存结果', 'response': cached})}\n\n"
+                        yield f"data: {json.dumps({'event': 'done', 'result': {'type': 'chat', 'response': cached, 'cached': True}})}\n\n"
+                        return
+
+                    yield f"data: {json.dumps({'event': 'progress', 'step': 'thinking', 'message': 'AI正在思考中...'})}\n\n"
+                    add_task_status(task_id, 'processing', 'AI正在思考中...')
+
+                    response = agri_agent.ask(user_message)
+                    set_llm_cache(cache_key, response)
+
+                    add_task_status(task_id, 'completed', '对话完成', {'type': 'chat', 'response': response})
+                    yield f"data: {json.dumps({'event': 'done', 'result': {'type': 'chat', 'response': response, 'cached': False}})}\n\n"
+
+            except Exception as e:
+                yield f"data: {json.dumps({'event': 'error', 'message': str(e)})}\n\n"
+            finally:
+                yield "data: [DONE]\n\n"
+
+        return Response(
+            stream_with_context(generate()),
+            mimetype='text/event-stream',
+            headers={
+                'Cache-Control': 'no-cache',
+                'X-Accel-Buffering': 'no',
+                'Connection': 'keep-alive'
+            }
+        )
+    except Exception as e:
+        return jsonify({'code': 500, 'msg': f'服务器错误: {str(e)}'}), 500
+
+@app.route('/api/cache/clear', methods=['POST'])
+def clear_cache():
+    """清除LLM缓存"""
+    clear_llm_cache()
+    return jsonify({'code': 200, 'msg': '缓存已清除'})
+
 @app.route('/api/health', methods=['GET'])
 def health_check():
     """健康检查接口"""
@@ -224,7 +476,9 @@ def health_check():
         "status": "running",
         "msg": "后端服务运行正常",
         "agent_available": AGENT_AVAILABLE,
-        "patrol_count": len(PATROL_DATA)
+        "patrol_count": len(PATROL_DATA),
+        "llm_cache_size": len(_llm_cache),
+        "pending_tasks": len([t for t in _task_status.values() if t['status'] == 'pending'])
     })
 
 # ====================== 服务启动 ======================
